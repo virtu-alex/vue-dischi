@@ -41,8 +41,25 @@ export default {
 
 <style lang="scss" scoped>
 .artists.col {
-  flex-basis:calc(20% - 2rem) ;
+  flex-basis: calc(20% - 2rem);
   flex-wrap: wrap;
   background-color: #2e3a46;
+}
+.artists.col:hover {
+  cursor: pointer;
+  animation: transform 3s ease-out;
+  & {
+    @keyframes transform {
+      0% {
+        transform: scale(1);
+      }
+      50%{
+        transform: scale(1.15);
+      }
+      100%{
+        transform: scale(1);
+      }
+    }
+  }
 }
 </style>
