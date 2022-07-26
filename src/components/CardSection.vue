@@ -2,7 +2,7 @@
   <section id="music">
     <div class="container">
       <div class="artists-list row gy-4">
-        <div class="artists col pe-3" v-for="(artist, i) in artists" :key="i">
+        <div class="artists col mx-3" v-for="(artist, i) in artists" :key="i">
           <ArtistCard
             :author="artist.author"
             :poster="artist.poster"
@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .artists.col {
-  flex-basis: 20%;
+  flex-basis:calc(20% - 2rem) ;
   flex-wrap: wrap;
   background-color: #2e3a46;
 }
