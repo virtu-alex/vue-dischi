@@ -2,12 +2,12 @@
   <section id="music">
     <div class="container">
       <div class="artists-list row gy-4">
-        <div class="artists col mx-3" v-for="(artist, i) in artists" :key="i">
+        <div class="artists col mx-3" v-for="(album, i) in albums" :key="i">
           <ArtistCard
-            :author="artist.author"
-            :poster="artist.poster"
-            :title="artist.title"
-            :year="artist.year"
+            :author="album.author"
+            :poster="album.poster"
+            :title="album.title"
+            :year="album.year"
           />
         </div>
       </div>
@@ -16,26 +16,16 @@
 </template>
 
 <script>
-import axios from "axios";
 import ArtistCard from "./ArtistCard.vue";
 export default {
   name: "CardSection",
   components: {
     ArtistCard,
   },
-  data() {
-    return {
-      artists: [],
-    };
-  },
-  mounted() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => {
-        console.log(res.data);
-        this.artists = res.data.response;
-      });
-  },
+  props: {
+    albums: Array,
+  }
+  
 };
 </script>
 
@@ -53,10 +43,10 @@ export default {
       0% {
         transform: scale(1);
       }
-      50%{
+      50% {
         transform: scale(1.15);
       }
-      100%{
+      100% {
         transform: scale(1);
       }
     }

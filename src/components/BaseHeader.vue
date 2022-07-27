@@ -1,8 +1,18 @@
 <template>
   <header>
     <div class="row">
-      <div class="col-12 justify-content-center d-flex">
-        <img class="spotify-logo image-fluid" src="../../spotify.png" alt="" />
+      <div class="col-12 justify-content-between d-flex px-5">
+        <img
+          class="spotify-logo image-fluid px-3"
+          src="../../spotify.png"
+          alt=""
+        />
+        <select @change="$emit('genreChanged')" class="px-3" name="select" id="">
+          <option value="">Select a Genre</option>
+          <option v-for="(genre, i) in genres" :key="i" :value="genre">
+            {{ genre }}
+          </option>
+        </select>
       </div>
     </div>
   </header>
@@ -11,6 +21,9 @@
 <script>
 export default {
   name: "BaseHeader",
+  props: {
+    genres: Array,
+  },
 };
 </script>
 
@@ -30,13 +43,13 @@ header {
     animation: scale 5s linear infinite;
     & {
       @keyframes scale {
-        0%{
+        0% {
           transform: scale(1);
         }
-        50%{
+        50% {
           transform: scale(1.3);
         }
-        100%{
+        100% {
           transform: scale(1);
         }
       }
