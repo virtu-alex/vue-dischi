@@ -4,8 +4,8 @@ MILESTONE -1 Continuate a lavorare nella stessa repo di ieri e aggiungete una se
 
 <template>
   <div id="app">
-    <BaseHeader :genres="genres" />
-    <CardSection :albums="albums" />
+    <BaseHeader :genres="genres" @genre-changed="albumsFilter" />
+    <CardSection :albums="filteredAlbums" />
   </div>
 </template>
 
@@ -23,7 +23,21 @@ export default {
   data() {
     return {
       albums: [],
+      filteredAlbums: [],
     };
+  },
+  methods: {
+    albumsFilter(value) {
+      let filteredAlbums;
+      if (value === "All") {
+        filteredAlbums = this.albums;
+      } else {
+        filteredAlbums = this.albums.filter((album) => {
+          return album.genre === value;
+        });
+      }
+      this.filteredAlbums = filteredAlbums;
+    },
   },
   computed: {
     genres() {
@@ -42,6 +56,7 @@ export default {
       .then((res) => {
         console.log(res.data);
         this.albums = res.data.response;
+        this.filteredAlbums = res.data.response;
       });
   },
 };

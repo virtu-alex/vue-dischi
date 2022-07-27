@@ -7,8 +7,8 @@
           src="../../spotify.png"
           alt=""
         />
-        <select @change="$emit('genreChanged')" class="px-3" name="select" id="">
-          <option value="">Select a Genre</option>
+        <select @change="genreChanged($event)" class="px-3" name="select" id="">
+          <option value="All">All</option>
           <option v-for="(genre, i) in genres" :key="i" :value="genre">
             {{ genre }}
           </option>
@@ -23,6 +23,12 @@ export default {
   name: "BaseHeader",
   props: {
     genres: Array,
+  },
+  methods: {
+    genreChanged(event) {
+      const value = event.target.value
+      this.$emit("genre-changed", value);
+    },
   },
 };
 </script>
